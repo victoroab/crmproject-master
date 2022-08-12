@@ -1,0 +1,41 @@
+
+.header2 {
+    width: 100%;
+    background-color: white;
+}
+
+header {
+    position: fixed;
+    width: inherit;
+    height: 83px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #FFFFFF;
+    border: 2px solid #F0F0F0;
+    z-index: 100;
+}
+
+.awcsh-logo {
+    margin: 40px;
+}
+
+.hmb {
+    margin-right: 50px;
+    font-size: 2rem;
+    /* color: #54A9EE; */
+    color: #2793EB;
+    display: none;
+}
+
+.hmb:hover {
+    color: #2283d2;
+}
+
+
+
+@media screen and (max-width: 900px) {
+    .hmb {
+        display: block;
+    }   
+}

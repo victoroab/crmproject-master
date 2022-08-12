@@ -1,0 +1,143 @@
+
+.add-cases-container {
+    position: absolute;
+    width: 100vw;
+    height: 106vh;
+    background-color: rgba(49,49,49,0.8);
+    background: rgba(49,49,49,0.8);
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.close-container {
+    width: 100%;
+    height: 100%;
+    z-index: 1001;
+}
+
+.add-cases-section {
+    max-width: 603px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FFFFFF;
+    border: 2px solid #F0F0F0;
+    border-radius: 10px;
+    padding: 50px, 52px;
+    padding: 40px;
+    margin-bottom: 37px;
+    position: fixed;
+    top: 18px;
+    left: 640px;
+    z-index: 102;
+}
+
+.cases-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-shrink: 1;
+    flex-direction: column;
+    max-width: auto;
+    height: 432px;
+    height: auto;
+}
+
+.cases-close {
+    margin-left: auto;
+    background: linear-gradient(178.18deg, #2AAE74 -13.56%, #2793EB 158.3%);
+    color: white;
+    border-radius: 100px;
+    width: 80px;
+    height: 1.6rem;
+    border: none;
+}
+
+.cases-close:hover {
+    background: linear-gradient(178.18deg, #238e5f -13.56%, #2283d2 158.3%);
+}
+
+.cases-form-title {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    background: linear-gradient(178.18deg, #2AAE74 -13.56%, #2793EB 158.3%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-style: "poppins";
+}
+
+.cases-form-text {
+    margin-top: 25px;
+    margin-bottom: 8px;
+}
+
+.cases-form-input {
+    width: 430px;
+    height: 40px;
+    border: 1px solid #2AAE74;
+    background: #FFFFFF;
+    outline: none;
+    border-radius: 100px;
+    padding-left: 23px;
+}
+
+.cases-form-txtarea {
+    padding-top: 8px;
+    resize: none;
+    height: 4rem;
+    border: 1px solid #2AAE74;
+    outline: none;
+    background: white;
+}
+
+.cases-form-button {
+    background: linear-gradient(178.18deg, #2AAE74 -13.56%, #2793EB 158.3%);
+    color: white;
+    border-radius: 100px;
+    width: 100px;
+    height: 40px;
+    border: none;
+    margin: auto;
+    margin-top: 58px;
+}
+
+.cases-form-button:hover {
+    background: linear-gradient(178.18deg, #238e5f -13.56%, #2283d2 158.3%);
+}
+
+.back-btn {
+    align-self: flex-end;
+    margin-bottom: 1rem;
+    background: #2793EB;
+    border: none;
+    border-radius: 5px;
+    width: 73px;
+    height: 27px;
+    color: white;
+}
+
+
+@media screen and (max-width: 1500px) {
+    .add-cases-section {
+        margin-right: auto;
+        margin-left: auto;
+        left: 0;
+        right: 0;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .add-cases-section {
+        margin-right: 20px;
+        margin-left: 20px;
+        top: 40px;
+    }
+
+    .cases-form-input {
+        width: auto;
+    }
+}

@@ -1,0 +1,111 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f2f7f4;
+}
+
+.login{
+    width: 100%;
+}
+
+header {
+    width: inherit;
+    height: 83px;
+    display: flex;
+    position: fixed;
+    align-items: center;
+    background: #FFFFFF;
+    border: 2px solid #F0F0F0;
+    top: 0;
+}
+
+.awcsh-logo {
+    margin: 40px;
+}
+
+main {
+    max-width: 1030px;
+    height: 497px;
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #F0F0F0;
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 209px;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.4px;
+    color: #858585;
+}
+
+main > p {
+    margin: 55px 0px 53px 0px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+form label {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.form-email, .form-password {
+    width: 362px;
+    height: 62px;
+    border: 2px solid #F0F0F0;
+    border-radius: 100px;
+    margin: 17px 0px 27px 0px;
+    padding: 33px;
+}
+
+.form-email::placeholder, .form-password::placeholder {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.4px;
+    color: #858585;
+    padding: 34px;
+}
+
+.form-password {
+    margin-bottom: 35px;
+}
+
+.login-btn {
+    width: 134px;
+    height: 42px;
+    background: linear-gradient(178.18deg, #2AAE74 -13.56%, #2793EB 158.3%);
+    border: none;
+    border-radius: 100px;
+    margin: auto;
+    color: white;
+}
+
+.login-btn:hover {
+    background: linear-gradient(178.18deg, #238e5f -13.56%, #2283d2 158.3%);
+}
+
+
+@media screen and (max-width: 1200px) {
+    main {
+        margin-left: 20px; margin-right: 20px;
+    }
+}

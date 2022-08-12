@@ -1,0 +1,132 @@
+.settings {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: auto;
+    margin-left: 470px; margin-right: 30px;
+    align-self: center;
+    max-width: 1040px;
+    overflow-x: scroll;
+}
+
+
+.settings-text {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-top: 144px;
+    align-items: flex-start;
+    max-width: auto;
+    height: auto;
+    align-items: flex-start;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 18px;
+    color: #858585;
+    margin-right: 30px;
+}
+
+.settings-text > p {
+    margin-bottom: 33px;
+}
+
+.settings-text-row1, .settings-text-row2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: auto;
+    margin-bottom: 33px;
+}
+
+.settings-body {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+    height: auto;
+    flex-direction: column;
+    align-items: flex-start;
+    background: #FFFFFF;
+    border: 2px solid #F0F0F0;
+    color: #858585;
+    border-radius: 10px;
+    padding: 50px, 52px;
+    padding: 40px;
+    margin-bottom: 167px;
+    overflow-x: scroll;
+}
+
+.settings-body > div, .settings-body > p {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+.settings-row1 {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 18px;
+    color: #858585;
+}
+
+.profile-pic {
+    border-radius: 100%;
+    margin-top: 59.86px;
+}
+
+.settings-form {
+    width: 363px;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.settings-form-password {
+    width: 362px;
+    height: 62px;
+    border: 2px solid #F0F0F0;
+    border-radius: 100px;
+    margin: 17px 0px 35px 0px;
+    padding-left: 34px;
+}
+
+.settings-form-password::placeholder {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.4px;
+    color: #858585;
+    padding-left: 34px;
+}
+
+.settings-form-submit {
+    width: 134px;
+    height: 42px;
+    background: linear-gradient(178.18deg, #2AAE74 -13.56%, #2793EB 158.3%);
+    border: none;
+    border-radius: 100px;
+    margin: auto;
+    color: white;
+}
+
+
+@media screen and (max-width: 1400px) {
+    .settings {
+        margin-left: 300px;
+    }
+
+}
+
+@media screen and (max-width: 900px) {
+    .settings {
+        margin-left: 30px;
+    }
+}
