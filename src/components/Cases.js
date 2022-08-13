@@ -112,7 +112,6 @@ const Cases = () => {
           </div>
 
           <div className="cases-body-text-row2">
-            {/* <p>Cases</p> */}
             <div className="cb-row2-items">
               <div className="search-cases">
                 <FiSearch className="search-cases-icon" />

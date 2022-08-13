@@ -8,7 +8,6 @@
     height: auto;
     margin-left: 470px; margin-right: 30px;
     margin-bottom: 65px;
-    /* overflow-x: scroll; */
 }
 
 .dashboard-text {
@@ -92,6 +91,8 @@
 }
 
 .dashboard-agents {
+    max-width: 1000px;
+    min-height: 164px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -116,7 +117,6 @@
 }
 
 .agents-body-heading {
-    max-width: 90%;
     height: auto;
     display: flex;
     flex-wrap: wrap;
@@ -135,7 +135,6 @@
 }
 
 .agents-body-items {
-    min-width: 300px;
     display: flex;
     flex-direction: column;
     border: 1px solid #F0F0F0;
@@ -242,6 +241,11 @@ td {
     color: #858585;
 }
 
+.items {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .agent-count {
     font-family: 'Inter', sans-serif;
     font-style: normal;
@@ -296,7 +300,7 @@ td {
 
 @media screen and (max-width: 900px) {
     .dashboard-cases {
-        margin-right: 60px;
+        margin-right: 30px;
     }
 
     .dashboard-agents {

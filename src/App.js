@@ -10,7 +10,6 @@ import ClosedCases from './components/ClosedCases'
 import Logout from './components/Logout'
 import ViewCase from './components/ViewCase'
 import RequireAuth from './components/RequireAuth'
-import { AuthProvider } from './context/AuthProvider'
 import './app.css'
 
 function App() {

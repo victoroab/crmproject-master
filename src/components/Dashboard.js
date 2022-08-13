@@ -90,9 +90,8 @@ const Dashboard = () => {
         <div className="dashboard-text">
           <div className="dashboard-text-row1">
             <p>Dashboard</p>
+            <p>{`Logged in as ${agent}`}</p>
           </div>
-
-          <div className="dashboard-text-row2">{/* <p>Dashboard</p> */}</div>
         </div>
 
         <div className="dashboard-cases">

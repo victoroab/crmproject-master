@@ -24,21 +24,23 @@ const Agents = () => {
     getData()
   }, [])
 
-  const agentElement = agents
+  const agentElement = agentsId
     .filter((item) => {
       if (searchItem === '') {
         return item
-      } else if (
-        item.username.toLowerCase().includes(searchItem.toLowerCase())
-      ) {
+      } else if (item?.name.toLowerCase().includes(searchItem.toLowerCase())) {
         return item
       }
     })
-    .filter((item) => item.username !== 'admin')
+    .filter((item) => item.name !== 'admin')
     .map((data, index) => {
       return (
         <tr key={index}>
-          <td>{`${data.firstname} ${data.lastname}`}</td>
+          <td>
+            {agents
+              .filter((ag) => ag.email === data.email)
+              .map((a) => `${a.firstname} ${a.lastname}`)}
+          </td>
           <td>
             {
               agentsId
@@ -60,7 +62,6 @@ const Agents = () => {
           </div>
 
           <div className="agent-body-text-row2">
-            {/* <p>Agents</p> */}
             <div className="ab-row2-items">
               <div className="search-agents">
                 <FiSearch className="search-icon" />

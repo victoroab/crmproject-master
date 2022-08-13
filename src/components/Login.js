@@ -40,8 +40,8 @@ const Login = () => {
         <img src={logo} alt="logo" className="awcsh-logo" />
       </header>
       <main>
-        <p>Admin Login</p>
-        <form onSubmit={handleLogin}>
+        <p>Login</p>
+        <form onSubmit={handleLogin} className="login-form">
           <label htmlFor="username">Email</label>
           <input
             type="text"

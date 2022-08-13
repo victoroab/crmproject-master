@@ -78,7 +78,6 @@ const ClosedCases = () => {
           </div>
 
           <div className="case-body-text-row2">
-            {/* <p>Closed Cases</p> */}
             <div className="ccb-row2-items">
               <div className="search-closed-cases">
                 <FiSearch className="search-closed-cases-icon" />
