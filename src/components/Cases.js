@@ -4,39 +4,35 @@ import '../styles/agentcases.css'
 import AddCases from './AddCases'
 import { FiSearch } from 'react-icons/fi'
 import axios from '../api/axios'
-import useAuth from '../hooks/useAuth'
 
 const Cases = () => {
-  const { tok } = useAuth()
+  const tok = window.localStorage.getItem('n0authTok3n')
+  const agent = window.localStorage.getItem('belongsToUsername')
   const [displayCase, setDisplayCase] = useState(false)
 
-  function closePopUp() {
-    setDisplayCase(false)
-  }
+  const closePopUp = () => setDisplayCase(false)
 
-  function openPopUp() {
-    setDisplayCase(true)
-  }
+  const openPopUp = () => setDisplayCase(true)
+
+  let currentDate = new Date().toJSON().slice(0, 10)
 
   const [mount, setMount] = useState(false)
   const [searchTerm, setSearchTerm] = useState('')
 
   const [allCases, setAllCases] = useState([])
-  const [allNumbers, setAllNumbers] = useState([])
   const [realAccounts, setRealAccounts] = useState([])
 
   const getCases = async () => {
     const response = await axios.get('/api/casemanagement', {
       headers: { Authorization: `Bearer ${tok}` },
     })
-    const { accnos, cases, details } = response.data
+    const { cases, details } = response.data
     const nameAndNumber = details.map((detail) => ({
       fullName: detail['COL 3'],
       accNo: detail['COL 4'],
     }))
     setRealAccounts(nameAndNumber)
     setAllCases(cases)
-    setAllNumbers(accnos)
   }
 
   useEffect(() => {
@@ -54,6 +50,9 @@ const Cases = () => {
     .filter((item) => {
       return item?.status !== 'closed' && item
     })
+    .filter((item) =>
+      agent === 'admin' ? item : agent !== 'admin' ? item.agent === agent : ''
+    )
     .reverse()
     .map((data, index) => {
       const { details } = data
@@ -78,22 +77,27 @@ const Cases = () => {
             </Link>
           </td>
           <td>
-            <button
-              className="close-case-btn"
-              onClick={async () => {
-                try {
-                  await axios.post('/api/updstatus', {
-                    id: data.id,
-                    status: 'closed',
-                  })
-                  setMount((prev) => !prev)
-                } catch (err) {
-                  console.log(err)
-                }
-              }}
-            >
-              Close Case
-            </button>
+            {agent === 'admin' ? (
+              <button
+                className="close-case-btn"
+                onClick={async () => {
+                  try {
+                    await axios.post('/api/updclosed', {
+                      id: data.id,
+                      status: 'closed',
+                      dateClosed: currentDate,
+                    })
+                    setMount((prev) => !prev)
+                  } catch (err) {
+                    console.log(err)
+                  }
+                }}
+              >
+                Close Case
+              </button>
+            ) : (
+              ''
+            )}
           </td>
         </tr>
       )
@@ -104,12 +108,11 @@ const Cases = () => {
       <section className="cases-body">
         <div className="cases-body-text">
           <div className="cases-body-text-row1">
-            <p>Admin Management Cases</p>
-            <p className="pr">Accounts | Admin</p>
+            <p>Cases</p>
           </div>
 
           <div className="cases-body-text-row2">
-            <p>Cases</p>
+            {/* <p>Cases</p> */}
             <div className="cb-row2-items">
               <div className="search-cases">
                 <FiSearch className="search-cases-icon" />

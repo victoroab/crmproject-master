@@ -1,7 +1,6 @@
 import { RiDashboardLine } from 'react-icons/ri'
 import { MdOutlineCases } from 'react-icons/md'
 import { GoIssueClosed } from 'react-icons/go'
-import { RiSettings3Line } from 'react-icons/ri'
 import { MdOutlineLogout } from 'react-icons/md'
 import { MdOutlinePeopleAlt } from 'react-icons/md'
 

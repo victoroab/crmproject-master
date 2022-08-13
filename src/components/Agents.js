@@ -3,19 +3,21 @@ import '../styles/agents.css'
 import { Link } from 'react-router-dom'
 import { FiSearch } from 'react-icons/fi'
 import axios from '../api/axios'
-import useAuth from '../hooks/useAuth'
 
 const Agents = () => {
-  const { tok } = useAuth()
+  const tok = window.localStorage.getItem('n0authTok3n')
+  const agent = window.localStorage.getItem('belongsToUsername')
   const [searchItem, setSearchItem] = useState('')
   const [agents, setAgents] = useState([])
+  const [agentsId, setAgentsId] = useState([])
 
   const getData = async () => {
-    const response = await axios.get('/api/dashboard', {
+    const response = await axios.get('/api/agents', {
       headers: { Authorization: `Bearer ${tok}` },
     })
-    const { agents } = response.data
+    const { agents, agentsId } = response.data
     setAgents(agents)
+    setAgentsId(agentsId)
   }
 
   useEffect(() => {
@@ -37,7 +39,13 @@ const Agents = () => {
       return (
         <tr key={index}>
           <td>{`${data.firstname} ${data.lastname}`}</td>
-          <td>{data.username}</td>
+          <td>
+            {
+              agentsId
+                .filter((ag) => ag.email === data.email)
+                .map((a) => a.name)[0]
+            }
+          </td>
           <td>{data.email}</td>
         </tr>
       )
@@ -48,12 +56,11 @@ const Agents = () => {
       <section className="agent-body">
         <div className="agent-body-text">
           <div className="agent-body-text-row1">
-            <p>Admin Management Agents</p>
-            <p className="pr">Accounts | Admin</p>
+            <p>Agents</p>
           </div>
 
           <div className="agent-body-text-row2">
-            <p>Agents</p>
+            {/* <p>Agents</p> */}
             <div className="ab-row2-items">
               <div className="search-agents">
                 <FiSearch className="search-icon" />
@@ -66,9 +73,13 @@ const Agents = () => {
                   }}
                 />
               </div>
-              <Link to="invite" className="invite-agent-btn">
-                Add Agent
-              </Link>
+              {agent === 'admin' ? (
+                <Link to="invite" className="invite-agent-btn">
+                  Add Agent
+                </Link>
+              ) : (
+                ''
+              )}
             </div>
           </div>
         </div>

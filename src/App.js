@@ -10,6 +10,7 @@ import ClosedCases from './components/ClosedCases'
 import Logout from './components/Logout'
 import ViewCase from './components/ViewCase'
 import RequireAuth from './components/RequireAuth'
+import { AuthProvider } from './context/AuthProvider'
 import './app.css'
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
     <div className="app">
       <Routes>
         <Route path="/login" element={<Login />} />
+
         <Route element={<RequireAuth />}>
           <Route path="/" element={<Layout2 />}>
             <Route path="/" element={<Dashboard />} />

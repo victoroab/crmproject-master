@@ -14,7 +14,7 @@ const AddCases = (props) => {
   const status = 'processing'
 
   const agent = window.localStorage.getItem('belongsToUsername')
-  const caseId = 'awc-' + uuid().slice(0, 4)
+  const [caseId, setCaseId] = useState('awc-' + uuid().slice(0, 4))
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -61,6 +61,7 @@ const AddCases = (props) => {
             className="cases-form-input"
             value={accountNumber}
             required
+            pattern="[0-9]+"
             maxLength={10}
             onChange={(e) => {
               setAccountNumber(e.target.value)
@@ -99,7 +100,7 @@ const AddCases = (props) => {
           </select>
 
           <label htmlFor="date" className="cases-form-text">
-            Date
+            Date Created
           </label>
           <input
             type="date"
@@ -124,7 +125,7 @@ const AddCases = (props) => {
           />
 
           <label htmlFor="details" className="cases-form-text">
-            Details
+            Case Details
           </label>
           <textarea
             className="cases-form-input cases-form-txtarea"

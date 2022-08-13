@@ -2,10 +2,9 @@ import '../styles/agentcases.css'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from '../api/axios'
-import useAuth from '../hooks/useAuth'
 
 const ViewCase = () => {
-  const { tok } = useAuth()
+  const tok = window.localStorage.getItem('n0authTok3n')
   const navigate = useNavigate()
 
   const pathname = window.location.pathname
@@ -14,21 +13,19 @@ const ViewCase = () => {
   const stats = ['processing', 'resolved']
 
   const [allCases, setAllCases] = useState([])
-  const [allNumbers, setAllNumbers] = useState([])
   const [realAccounts, setRealAccounts] = useState([])
 
   const getData = async () => {
     const response = await axios.get('/api/casemanagement', {
       headers: { Authorization: `Bearer ${tok}` },
     })
-    const { accnos, cases, details } = response.data
+    const { cases, details } = response.data
     const nameAndNumber = details.map((detail) => ({
       fullName: detail['COL 3'],
       accNo: detail['COL 4'],
     }))
     setRealAccounts(nameAndNumber)
     setAllCases(cases)
-    setAllNumbers(accnos)
   }
 
   useEffect(() => {
@@ -59,14 +56,6 @@ const ViewCase = () => {
     <div className="cases-section">
       <section className="cases-body" style={{ overflowX: 'hidden' }}>
         <div className="cases-body-text">
-          <div className="cases-body-text-row1">
-            <p>Admin Management Cases</p>
-            <p className="pr">Accounts | Admin</p>
-          </div>
-
-          <div className="cases-body-text-row2">
-            <p>Cases</p>
-          </div>
           <button onClick={() => navigate(-1)} className="back-btn">
             Back
           </button>
@@ -107,6 +96,11 @@ const ViewCase = () => {
                 <span>
                   <span className="case-title-bl">Date Created</span>:{' '}
                   {item.date}
+                </span>
+                <br />
+                <span>
+                  <span className="case-title-bl">Date Closed</span>:{' '}
+                  {item?.dateClosed}
                 </span>
                 <br />
                 <span>

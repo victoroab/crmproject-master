@@ -1,13 +1,12 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../styles/dashboard.css'
 import img1 from '../images/Group 277.png'
 import axios from '../api/axios'
-import useAuth from '../hooks/useAuth'
 
 const Dashboard = () => {
-  const effectRan = useRef(false)
-  const { tok } = useAuth()
+  const tok = window.localStorage.getItem('n0authTok3n')
+  const agent = window.localStorage.getItem('belongsToUsername')
 
   const navigate = useNavigate()
   const [agents, setAgents] = useState([])
@@ -26,36 +25,35 @@ const Dashboard = () => {
     const response = await axios.get('/api/dashboard', {
       headers: { Authorization: `Bearer ${tok}` },
     })
-    const { agents, cases, details } = response.data
+    const { cases, details } = response.data
     const nameAndNumber = details.map((detail) => ({
       fullName: detail['COL 3'],
       accNo: detail['COL 4'],
     }))
     setRealAccounts(nameAndNumber)
-    setAgents(agents)
     setAllCases(cases)
   }
 
-  useEffect(() => {
-    if (effectRan.current === false) {
-      getDash()
-    }
+  const GetAgents = async () => {
+    const response = await axios.get('/api/agents', {
+      headers: { Authorization: `Bearer ${tok}` },
+    })
+    const { agentsId } = response.data
+    setAgents(agentsId)
+  }
 
-    return () => {
-      effectRan.current = true
-    }
+  useEffect(() => {
+    getDash()
+    GetAgents()
   }, [])
 
   const displayAgents = agents
-    .filter((item) => item.username !== 'admin')
+    .filter((item) => item.name !== 'admin')
     .map((data, index) => {
       return (
         <div className="agents-body-items" key={index}>
           <div className="items">
-            <div>{data.username}</div>
-            <div className="name">
-              <p>{`${data.firstname} ${data.lastname}`}</p>
-            </div>
+            <div>{data.name}</div>
             <p>{data.email}</p>
           </div>
         </div>
@@ -64,6 +62,9 @@ const Dashboard = () => {
 
   const displayCases = allCases
     .filter((c) => true)
+    .filter((item) =>
+      agent === 'admin' ? item : agent !== 'admin' ? item.agent === agent : ''
+    )
     .reverse()
     .map((data, index) => {
       return (
@@ -88,28 +89,28 @@ const Dashboard = () => {
       <section className="dashboard-body">
         <div className="dashboard-text">
           <div className="dashboard-text-row1">
-            <p>Admin Management System Overview</p>
-            <p className="pr">Accounts | Awacash</p>
-          </div>
-
-          <div className="dashboard-text-row2">
             <p>Dashboard</p>
           </div>
+
+          <div className="dashboard-text-row2">{/* <p>Dashboard</p> */}</div>
         </div>
 
         <div className="dashboard-cases">
           <div className="dashboard-cases-c">
             <img src={img1} alt="cases" />
             <p className="dashboard-c-text">Total Number of Cases</p>
-            <p className="dashboard-c-number">{allCases.length}</p>
+            <p className="dashboard-c-number">
+              {allCases.filter((item) => item.agent === agent).length}
+            </p>
           </div>
           <div className="dashboard-cases-c">
             <img src={img1} alt="cases" />
             <p className="dashboard-c-text">Total Number of Closed Cases</p>
             <p className="dashboard-c-number">
               {
-                allCases.filter((item) => item.status === 'closed' && item)
-                  .length
+                allCases
+                  .filter((item) => item.status === 'closed' && item)
+                  .filter((item) => item.agent === agent).length
               }
             </p>
           </div>
@@ -119,8 +120,9 @@ const Dashboard = () => {
             <p className="dashboard-c-number">
               {' '}
               {
-                allCases.filter((item) => item.status === 'resolved' && item)
-                  .length
+                allCases
+                  .filter((item) => item.status === 'resolved' && item)
+                  .filter((item) => item.agent === agent).length
               }
             </p>
           </div>
@@ -132,7 +134,6 @@ const Dashboard = () => {
           <div className="agents-body">
             <div className="agents-body-heading">
               <p>Agent Id</p>
-              <p>Agent Name</p>
               <p>Email</p>
             </div>
 

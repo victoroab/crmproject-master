@@ -3,26 +3,24 @@ import { Link } from 'react-router-dom'
 import '../styles/closedcases.css'
 import { FiSearch } from 'react-icons/fi'
 import axios from '../api/axios'
-import useAuth from '../hooks/useAuth'
 
 const ClosedCases = () => {
-  const { tok } = useAuth()
+  const tok = window.localStorage.getItem('n0authTok3n')
+  const agent = window.localStorage.getItem('belongsToUsername')
   const [allCases, setAllCases] = useState([])
-  const [allNumbers, setAllNumbers] = useState([])
   const [realAccounts, setRealAccounts] = useState([])
 
   const getData = async () => {
     const response = await axios.get('/api/casemanagement', {
       headers: { Authorization: `Bearer ${tok}` },
     })
-    const { accnos, cases, details } = response.data
+    const { cases, details } = response.data
     const nameAndNumber = details.map((detail) => ({
       fullName: detail['COL 3'],
       accNo: detail['COL 4'],
     }))
     setRealAccounts(nameAndNumber)
     setAllCases(cases)
-    setAllNumbers(accnos)
   }
 
   useEffect(() => {
@@ -41,6 +39,9 @@ const ClosedCases = () => {
     .filter((item) => {
       return item?.status === 'closed' && item
     })
+    .filter((item) =>
+      agent === 'admin' ? item : agent !== 'admin' ? item.agent === agent : ''
+    )
     .reverse()
     .map((data, index) => {
       return (
@@ -57,6 +58,7 @@ const ClosedCases = () => {
           <td>{data.agent}</td>
           <td>{data.details}</td>
           <td>{data.date}</td>
+          <td>{data.dateClosed}</td>
           <td>{data.status}</td>
           <td>
             <Link to={`/cases/${data.id}`} className="view-case-lnk">
@@ -72,12 +74,11 @@ const ClosedCases = () => {
       <section className="case-body">
         <div className="case-body-text">
           <div className="case-body-text-row1">
-            <p>Admin Management Closed Cases</p>
-            <p className="pr">Accounts | Admin</p>
+            <p>Closed Cases</p>
           </div>
 
           <div className="case-body-text-row2">
-            <p>Closed Cases</p>
+            {/* <p>Closed Cases</p> */}
             <div className="ccb-row2-items">
               <div className="search-closed-cases">
                 <FiSearch className="search-closed-cases-icon" />
@@ -104,6 +105,7 @@ const ClosedCases = () => {
                   <td className="cases-table-heading-data">Account number</td>
                   <td className="cases-table-heading-data">Agent</td>
                   <td className="cases-table-heading-data">Case details</td>
+                  <td className="cases-table-heading-data">Date Created</td>
                   <td className="cases-table-heading-data">Date Closed</td>
                   <td className="cases-table-heading-data">Status</td>
                 </tr>
