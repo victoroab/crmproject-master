@@ -77,7 +77,7 @@ const Dashboard = () => {
           </td>
           <td>{data.accountNumber}</td>
           <td>{data.agent}</td>
-          <td>{data.details}</td>
+          <td>{data.details.slice(0, 9)}</td>
           <td>{data.date}</td>
           <td>{data.status}</td>
         </tr>
@@ -100,7 +100,15 @@ const Dashboard = () => {
             <img src={img1} alt="cases" />
             <p className="dashboard-c-text">Total Number of Cases</p>
             <p className="dashboard-c-number">
-              {allCases.filter((item) => item.agent === agent).length}
+              {
+                allCases.filter((item) =>
+                  agent === 'admin'
+                    ? item
+                    : agent !== 'admin'
+                    ? item.agent === agent
+                    : ''
+                ).length
+              }
             </p>
           </div>
           <div className="dashboard-cases-c">
@@ -110,7 +118,13 @@ const Dashboard = () => {
               {
                 allCases
                   .filter((item) => item.status === 'closed' && item)
-                  .filter((item) => item.agent === agent).length
+                  .filter((item) =>
+                    agent === 'admin'
+                      ? item
+                      : agent !== 'admin'
+                      ? item.agent === agent
+                      : ''
+                  ).length
               }
             </p>
           </div>
@@ -122,7 +136,13 @@ const Dashboard = () => {
               {
                 allCases
                   .filter((item) => item.status === 'resolved' && item)
-                  .filter((item) => item.agent === agent).length
+                  .filter((item) =>
+                    agent === 'admin'
+                      ? item
+                      : agent !== 'admin'
+                      ? item.agent === agent
+                      : ''
+                  ).length
               }
             </p>
           </div>

@@ -56,7 +56,7 @@ const ClosedCases = () => {
           </td>
           <td>{data.accountNumber}</td>
           <td>{data.agent}</td>
-          <td>{data.details}</td>
+          <td>{data.details.slice(0, 9)}</td>
           <td>{data.date}</td>
           <td>{data.dateClosed}</td>
           <td>{data.status}</td>
