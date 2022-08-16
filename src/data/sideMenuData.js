@@ -32,7 +32,7 @@ const menuItems = [
   {
     id: '4',
     title: 'Closed Cases',
-    path: '/clcases',
+    path: '/closed-cases',
     icon: <GoIssueClosed />,
     className: 'item',
   },

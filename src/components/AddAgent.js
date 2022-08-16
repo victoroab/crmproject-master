@@ -46,65 +46,92 @@ const AddAgent = () => {
         </div>
 
         <div className="add-agent-table-section">
-          <form className="" onSubmit={handleRegister}>
-            <label className="" htmlFor="firstname">
-              Firstname
-            </label>
-            <input
-              type=""
-              className=""
-              id="firstname"
-              value={firstname}
-              required
-              onChange={(e) => {
-                setFirstName(e.target.value)
-              }}
-            />
-            <br />
-            <label className="" htmlFor="lastname">
-              Lastname
-            </label>
-            <input
-              type=""
-              className=""
-              id="lastname"
-              value={lastname}
-              required
-              onChange={(e) => {
-                setLastName(e.target.value)
-              }}
-            />
-            <br />
-            <label className="" htmlFor="email">
-              Email
-            </label>
-            <input
-              type=""
-              className=""
-              id="email"
-              value={email}
-              required
-              onChange={(e) => {
-                setEmail(e.target.value)
-              }}
-            />
-            <br />
-            <label htmlFor="agentId">Agent Id</label>
-            <input type="" className="" id="agentId" value={agentId} readOnly />
-            <br />
-            <label htmlFor="password">Password</label>
-            <input
-              type=""
-              className=""
-              id="password"
-              value={password}
-              required
-              onChange={(e) => {
-                setPassword(e.target.value)
-              }}
-            />
-            <br />
-            <button className="">Register</button>
+          <form className="add-ag-form" onSubmit={handleRegister}>
+            <span className="field-container">
+              <label className="label-title" htmlFor="firstname">
+                Firstname
+              </label>
+              <input
+                type=""
+                className=""
+                id="firstname"
+                value={firstname}
+                required
+                onChange={(e) => {
+                  setFirstName(e.target.value)
+                }}
+              />
+            </span>
+            {/* <br /> */}
+
+            <span className="field-container">
+              <label className="label-title" htmlFor="lastname">
+                Lastname
+              </label>
+              <input
+                type=""
+                className=""
+                id="lastname"
+                value={lastname}
+                required
+                onChange={(e) => {
+                  setLastName(e.target.value)
+                }}
+              />
+            </span>
+            {/* <br /> */}
+
+            <span className="field-container">
+              <label className="label-title" htmlFor="email">
+                Email
+              </label>
+              <input
+                type=""
+                className=""
+                id="email"
+                value={email}
+                required
+                onChange={(e) => {
+                  setEmail(e.target.value)
+                }}
+              />
+            </span>
+
+            <span className="field-container">
+              <label className="label-title" htmlFor="agentId">
+                Agent Id
+              </label>
+              <input
+                type=""
+                className=""
+                id="agentId"
+                value={agentId}
+                readOnly
+              />
+            </span>
+            {/* <br /> */}
+            {/* <br /> */}
+
+            <span className="field-container">
+              <label className="label-title" htmlFor="password">
+                Password
+              </label>
+              <input
+                type=""
+                className=""
+                id="password"
+                value={password}
+                required
+                onChange={(e) => {
+                  setPassword(e.target.value)
+                }}
+              />
+            </span>
+            {/* <br /> */}
+
+            <span className="field-container">
+              <button className="back-btn">Register</button>
+            </span>
           </form>
         </div>
       </section>

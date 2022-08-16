@@ -27,12 +27,10 @@ function App() {
               <Route index element={<Cases />} />
               <Route path=":caseId" element={<ViewCase />} />
             </Route>
-            <Route path="clcases" element={<ClosedCases />} />
+            <Route path="closed-cases" element={<ClosedCases />} />
             <Route path="logout" element={<Logout />} />
           </Route>
         </Route>
-
-        {/** */}
 
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
