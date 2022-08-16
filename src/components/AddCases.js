@@ -1,5 +1,5 @@
 import '../styles/addcases.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import axios from '../api/axios'
 import { v4 as uuid } from 'uuid'
 
@@ -13,8 +13,21 @@ const AddCases = (props) => {
   const [details, setDetails] = useState('')
   const status = 'processing'
 
+  const [accountDetails, setAccountDetails] = useState([])
+
   const agent = window.localStorage.getItem('belongsToUsername')
   const [caseId, setCaseId] = useState('awc-' + uuid().slice(0, 4))
+
+  const fetchAccounts = async () => {
+    const response = await axios.get('/api/accounts')
+    const { details } = response.data
+    setAccountDetails(details)
+    console.log(accountDetails)
+  }
+
+  useEffect(() => {
+    fetchAccounts()
+  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -66,6 +79,21 @@ const AddCases = (props) => {
             onChange={(e) => {
               setAccountNumber(e.target.value)
             }}
+          />
+
+          <label htmlFor="acc-name" className="cases-form-text">
+            Full Name
+          </label>
+          <input
+            type="text"
+            id="acc-name"
+            className="cases-form-input"
+            value={
+              accountDetails
+                .filter((detail) => detail.accountNumber === accountNumber)
+                .map((detail) => detail.fullName)[0]
+            }
+            readOnly
           />
 
           <label htmlFor="caseId" className="cases-form-text">

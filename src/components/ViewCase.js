@@ -2,6 +2,7 @@ import '../styles/agentcases.css'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from '../api/axios'
+import jsPDF from 'jspdf'
 
 const ViewCase = () => {
   const tok = window.localStorage.getItem('n0authTok3n')
@@ -21,8 +22,8 @@ const ViewCase = () => {
     })
     const { cases, details } = response.data
     const nameAndNumber = details.map((detail) => ({
-      fullName: detail['COL 3'],
-      accNo: detail['COL 4'],
+      fullName: detail.fullName,
+      accNo: detail.accountNumber,
     }))
     setRealAccounts(nameAndNumber)
     setAllCases(cases)
@@ -50,6 +51,33 @@ const ViewCase = () => {
     } catch (err) {
       console.log(err)
     }
+  }
+
+  const generatePdf = () => {
+    let doc = jsPDF('landscape', 'px', 'a4', 'false')
+    doc.text(40, 60, `Case Id: ${caseId}`)
+    doc.text(
+      40,
+      90,
+      `Customer Name: ${showCase.map(
+        (c) =>
+          `${realAccounts
+            .filter((number) => number.accNo === c.accountNumber && number)
+            .map((data) => `${data.fullName}`)}`
+      )}`
+    )
+    doc.text(
+      40,
+      120,
+      `Account Number: ${showCase.map((c) => `${c.accountNumber}`)}`
+    )
+    doc.text(40, 150, `Case Category: ${showCase.map((c) => `${c.category}`)}`)
+    doc.text(40, 180, `Case Details: ${showCase.map((c) => `${c.details}`)}`)
+    doc.text(40, 210, `Date Created: ${showCase.map((c) => `${c.date}`)}`)
+    doc.text(40, 240, `Date Closed: ${showCase.map((c) => `${c.dateClosed}`)}`)
+    doc.text(40, 270, `Status: ${showCase.map((c) => `${c.status}`)}`)
+    doc.text(40, 300, `Agent in Charge: ${showCase.map((c) => `${c.agent}`)}`)
+    doc.save('case.pdf')
   }
 
   return (
@@ -146,6 +174,9 @@ const ViewCase = () => {
                   {item.agent}
                 </span>
                 <br />
+                <button onClick={generatePdf} className="chg-status-btn">
+                  Export as pdf
+                </button>
               </div>
             ))}
           </div>

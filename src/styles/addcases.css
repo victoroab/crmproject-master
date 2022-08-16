@@ -31,6 +31,8 @@
     top: 18px;
     left: 640px;
     z-index: 102;
+    height: 700px;
+    overflow-y: scroll;
 }
 
 .cases-form {
@@ -41,7 +43,6 @@
     flex-shrink: 1;
     flex-direction: column;
     max-width: auto;
-    height: 432px;
     height: auto;
 }
 

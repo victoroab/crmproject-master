@@ -27,8 +27,8 @@ const Dashboard = () => {
     })
     const { cases, details } = response.data
     const nameAndNumber = details.map((detail) => ({
-      fullName: detail['COL 3'],
-      accNo: detail['COL 4'],
+      fullName: detail.fullName,
+      accNo: detail.accountNumber,
     }))
     setRealAccounts(nameAndNumber)
     setAllCases(cases)
