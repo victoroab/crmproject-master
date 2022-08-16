@@ -308,6 +308,25 @@ td {
     }
 }
 
+@media screen and (max-width: 401px) {
+    .dashboard-cases {
+        margin-right: 10px;
+    }
+
+    .dashboard-agents {
+        margin-right: 10px;
+    }
+}
+@media screen and (max-width: 370px) {
+    .dashboard-cases {
+        margin-right: 0px;
+    }
+
+    .dashboard-agents {
+        margin-right: 0px;
+    }
+}
+
 
 
 
