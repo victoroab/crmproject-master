@@ -29,9 +29,7 @@ const Login = () => {
       window.localStorage.setItem('n0authTok3n', authToken)
       window.localStorage.setItem('belongsToUsername', username)
       navigate('/')
-    } catch (err) {
-      console.log(err)
-    }
+    } catch (err) {}
   }
 
   return (

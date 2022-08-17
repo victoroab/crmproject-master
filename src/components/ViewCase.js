@@ -77,7 +77,7 @@ const ViewCase = () => {
     doc.text(40, 240, `Date Closed: ${showCase.map((c) => `${c.dateClosed}`)}`)
     doc.text(40, 270, `Status: ${showCase.map((c) => `${c.status}`)}`)
     doc.text(40, 300, `Agent in Charge: ${showCase.map((c) => `${c.agent}`)}`)
-    doc.save('case.pdf')
+    doc.save(`case ${caseId}.pdf`)
   }
 
   return (

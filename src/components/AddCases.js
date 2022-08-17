@@ -22,7 +22,6 @@ const AddCases = (props) => {
     const response = await axios.get('/api/accounts')
     const { details } = response.data
     setAccountDetails(details)
-    console.log(accountDetails)
   }
 
   useEffect(() => {
